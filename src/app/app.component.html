@@ -1,0 +1,145 @@
+
+<div class="container-fluid mainContent">
+  <div class="row">
+    <div class="col-md-2 side-bar-col">
+      <div class="sideBar">
+        <div class="menuItems">
+          <div class="logo">
+            <p class="logo-text">
+              <img src="https://dummyimage.com/40x40/000/fff.png" class="img-fluid" alt=""> <span>Logo</span>
+            </p>
+          </div>
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link menu-text active" href="#">
+                <span>
+                  <fa-icon [icon]="faBars"></fa-icon>
+                </span> Main list
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link menu-text" href="#">
+                <span>
+                  <fa-icon [icon]="faInfoCircle"></fa-icon>
+                </span> Loan details
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link menu-text" href="#">
+                <span>
+                  <fa-icon [icon]="faCalendar"></fa-icon>
+                </span> Contacts
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link menu-text" href="#">
+                <span>
+                  <fa-icon [icon]="faLandmark"></fa-icon>
+                </span> Bank names
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link menu-text" href="#">
+                <span>
+                  <fa-icon [icon]="faPaperclip"></fa-icon>
+                </span> Attachments
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link menu-text" href="#">
+                <span>
+                  <fa-icon [icon]="faArchive"></fa-icon>
+                </span> Archived loans
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link menu-text" href="#">
+                <span>
+                  <fa-icon [icon]="faTrash"></fa-icon>
+                </span> Deleted loans
+              </a>
+            </li>
+            <li class="nav-item">
+              <button type="button" class="btn btn-primary add-new-loan" (click)="open(content)">Add new loan</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-10 main-content">
+      <!-- Nav -->
+      <nav class="navbar navbar-expand-lg navbar-light search-nav">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <form class="form-inline my-2 my-lg-0 search-form">
+            <input class="form-control mr-sm-2 capsule" type="search" placeholder="&#xf002;" aria-label="Search">
+            <a href="" class="grey-text">Filter Search  <fa-icon [icon]="faSlidersH"></fa-icon></a>
+          </form>
+        </div>
+
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              {{username}}
+              <img src="https://dummyimage.com/40x40/000/fff.png" class="img-fluid" alt="">
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </li>
+        </ul>
+      </nav>
+      <!-- End of nav -->
+    </div>
+  </div>
+</div>
+
+
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="create-loan-modal">Create Loan</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="form-group">
+          <label for="bankName">Bank name:</label>
+          <input type="text" [(ngModel)]="loan.bankName" class="form-control" id="bankName" name="bankName" aria-describedby="bankName" placeholder="Bank name">
+          
+          <label for="loanNumber">Loan number:</label>
+          <input type="text" [(ngModel)]="loan.loanNumber" class="form-control" id="loanNumber" name="loanNumber" aria-describedby="loanNumber" placeholder="Loan number">
+
+          <label for="loanAmount">Loan amount:</label>
+          <input type="text" [(ngModel)]="loan.amount" name="amount" class="form-control" id="loanAmount" aria-describedby="loanAmount" placeholder="Loan amount">
+          
+          <label for="loanNumber">Partial Payment:</label>
+          <input type="text" [(ngModel)]="loan.partialPayments" name="partialPayments" class="form-control" id="partialPayment" aria-describedby="partialPayment" placeholder="Partial payment">
+          
+          <label for="openingDate">Opening date:</label>
+          <input type="date" [(ngModel)]="loan.openingDate" name="openingDate" class="form-control" id="openingDate" aria-describedby="openingDate" placeholder="Opening Date">
+          
+          <label for="dueDate">Due date:</label>
+          <input type="date" [(ngModel)]="loan.dueDate" name="dueDate" class="form-control" id="dueDate" aria-describedby="dueDate" placeholder="Due date">
+          
+          <label for="loanDetails">Loan details:</label>
+          <input type="text" [(ngModel)]="loan.details" name="details" class="form-control" id="loanDetails" aria-describedby="loanDetails" placeholder="Loan details">
+        </div>
+        <button type="submit" class="btn btn-primary" (click)="createLoanEntry(loan)">Submit</button>
+      </form>
+
+    </div>
+  </ng-template>  
+  <pre>{{closeResult}}</pre>
+
+  <router-outlet></router-outlet>

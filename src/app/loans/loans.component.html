@@ -1,0 +1,55 @@
+<div class="container-fluid mainContent">
+  <div class="row">
+    <div class="col-md-10 main-content">
+      <div class="container" *ngIf="loading">
+          <div class="row">
+              <div class="col-md-9 table-container">
+                  <h3>Loading Loan Data ...</h3>
+              </div>
+          </div>
+      </div>
+      <div class="container" *ngIf="loanEntries">
+        <div class="row">
+          <div class="col-md-12 table-container">
+            <table class="table table-responsive table-borderless table-striped">
+                <br>
+                <h5>Loans</h5>
+              <thead>
+                <tr>
+                  <th scope="col">
+                      <input type="checkbox" value="" id="defaultCheck1">
+                  </th>
+                  <th scope="col">Bank Name</th>
+                  <th scope="col">Loan Number</th>
+                  <th scope="col">Loan Amount {{ currencySymbol }}</th>
+                  <th scope="col">Loan Balance {{ currencySymbol }}</th>
+                  <th scope="col">Partial Payments Made {{ currencySymbol }}</th>
+                  <th scope="col">Opening Date</th>
+                  <th scope="col">Due Date</th>
+                  <th scope="col">Details</th>
+                  <th scope="col">Loan detail</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let loan of loanEntries" class="loanData">
+                  <th scope="row">
+                      <input type="checkbox" value="" id="defaultCheck">
+                  </th>
+                  <th scope="row">{{ loan.bankName }}</th>
+                  <th scope="row">{{ loan.loanNumber }}</th>
+                  <th scope="row">{{ loan.amount | currency:[] }}</th>
+                  <th scope="row">{{ loan.balance | currency:[] }}</th>
+                  <th scope="row">{{ loan.partialPayments | currency:[] }}</th>
+                  <th scope="row">{{ loan.openingDate | date }}</th>
+                  <th scope="row">{{ loan.dueDate | date }}</th>
+                  <th scope="row">{{ loan.details }}</th>
+                  <th scope="row" class="text-center loan-detail-link" (click)="gotoLoanDetail(loan)"><fa-icon [icon]="faEllipsisV"></fa-icon></th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

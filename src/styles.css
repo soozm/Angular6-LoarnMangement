@@ -1,0 +1,211 @@
+/* You can add global styles to this file, and also import other style files */
+/*font-family, dropdown, footer*/
+@import "~bootstrap/dist/css/bootstrap.css";
+body {
+    color: #7b7b7b;
+    font-family: 'Roboto', sans-serif;
+}
+textarea, input {
+    padding:10px;
+    font-family: FontAwesome, "Open Sans", Verdana, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+}
+/* general styles */
+.capsule {
+    border-radius: 4em;
+}
+.grey-text {
+    color: #7b7b7b;
+}
+.menu-text {
+    color: #b9bad8;
+}
+.logo-text {
+    color: #aeb1c8;
+}
+/* Sidebar */
+.side-bar-col {
+    padding: 0;
+    /* extra style */
+    height: 100%;
+    width: 15em;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #ffffff;
+    overflow-x: hidden;
+    box-shadow: 0.5px 1.5px 12px -4px #888888;
+}
+.logo-text {
+    border-bottom: solid 1px #aeb1c854;
+    padding: 1em 0 1em 2em;
+    font-weight: bold;
+}
+.logo-text span{
+    padding-left: 1em;
+}
+ul.nav li a {
+    font-size: .9em;
+}
+li.nav-item {
+    padding-left: 1em;
+}
+.menu-text span {
+    padding-right: .7em;
+}
+li.nav-item .add-new-loan {
+    border-radius: 20px;
+    margin-top: 2em;
+    margin-left: 1em;
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 2em;
+}
+.nav-link{
+    padding: 0.6rem 1rem;
+}
+/* main content */
+.main-content {
+    margin-left: 15em;
+    padding-left: 0;
+    padding-right: 0;
+    background: #fcfcfc;
+}
+
+/* Table */
+.table thead th {
+    font-size: .8em;
+    color: #302e51;
+}
+.table th, .table td{
+    font-size: .8em;
+    color: #a4a7bf;
+}
+.table {
+    background: #ffffff;
+    box-shadow: 0.5px 1.5px 12px -4px #888888;
+    border-radius: 5px;
+}
+.table-container {
+    margin-top: 2em;
+    margin-left: -1em;
+}
+.table-container table h5, .notes h5 {
+    padding-left: 1em;
+    font-size: 1em;
+    font-weight: bold;
+}
+.loanData th{
+    font-weight: 500;
+}
+/* serach nav */
+.search-nav {
+    background: white;
+    box-shadow: 4px 1.5px 12px -4px #888888;
+    border-color: transparent;
+}
+.search-form a{
+    font-size: 0.8em;
+}
+
+input.capsule {
+    color: #ececec;
+    border-color: #ececec;
+}
+input.capsule::placeholder {
+    color: #9a9db7;
+}
+
+/* filter dropdown */
+.dropdownContent {
+    width: 22em;
+    padding: 1em;
+}
+.dropdownContent button, .timeFilter button,
+.dropdown button, .bankNameFilter button {
+    background: transparent;
+    color: #a4a7bf;
+    border-color: #a4a7bf;
+    border-radius: 1em;
+    margin-right: 1em;
+    font-size: .8em;
+    padding: 0.2rem 0.95rem;
+}
+.timeFilter .calendarInput{
+    background: transparent;
+    color: #a4a7bf;
+    border-color: #a4a7bf;
+    font-size: .8em;
+    border-top-left-radius: 1em;
+    border-bottom-left-radius: 1em;
+    height: initial;
+    padding: 0rem;
+    padding: 0.2rem 0.95rem;
+}
+/* loan detail */
+.loan-detail {
+    padding: 2em;
+}
+.delete-loan{
+    margin-left: 5px;
+}
+/* Notes container */
+.notes-container {
+    margin-top: 2em;
+}
+.notes {
+    background: #ffffff;
+    box-shadow: 0.5px 1.5px 12px -4px #888888;
+    border-radius: 5px;
+    padding-bottom: 2em;
+}
+
+.note {
+    font-size: .8em;
+    background: #ecfaed;
+    margin-left: 1em;
+    margin-right: 1em;
+    border-radius: 5px;
+    padding: 0.5em 1.5em 2em;
+    margin-bottom: 2em;
+}
+.noteTitle {
+    color: #20c121;
+    font-weight: bold;
+}
+.noteContent {
+    color: #a0a4bb;
+}
+.noteDetails {
+    color: #3f65d2;
+    font-weight: bold;
+}
+
+.add-note {
+    margin-left: 1em;
+}
+
+/* loan detail menu item */
+.loanMenuItem {
+    color: #a0a4bb;
+    font-size: .9em;
+    margin-right: 1em;
+    cursor: pointer;
+    padding: .5em;
+    padding-right: 0em;
+}
+
+.loanMenuItem:hover {
+    background: #e7eeff;
+}
+
+.loan-detail-link {
+    cursor: pointer;
+}
+
+.mainList {
+    color: #0062ff;
+}

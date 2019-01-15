@@ -1,0 +1,131 @@
+<div class="container-fluid mainContent">
+    <div class="row">
+      <div class="col-md-10 main-content container">
+        <div class="row">
+          <div class="col-md-1"></div>
+          <div class="col-md-7 table-container table loan-detail">
+            <div class="loanMenu">
+              <span class="loanMenuItem" routerLink=""><fa-icon class="mainList" [icon]="faThList"></fa-icon> Main List</span>
+              <span class="loanMenuItem" (click)="openEditModal(Editcontent)"> <img src="../../assets/images/icons/Edit.svg" alt=""> Edit</span>
+              <span class="loanMenuItem"> <img src="../../assets/images/icons/Move.svg" alt=""> Move</span>
+              <span class="loanMenuItem"> <img src="../../assets/images/icons/Download.svg" alt=""> Export As PDF</span>
+              <span class="loanMenuItem"> <img src="../../assets/images/icons/Print.svg" alt=""> Print</span>
+              <span class="loanMenuItem" (click)="open(content)"> <img src="../../assets/images/icons/Add Note.svg" alt=""> Add Note</span>
+              <span class="loanMenuItem" (click)="deleteLoan(loan)"> <img src="../../assets/images/icons/Delete.svg" alt=""> Delete</span>
+              <input type="file" name="photo" ng2FileSelect [uploader]="uploader" />
+
+              <button type="button" class="btn btn-success btn-s" 
+                (click)="uploader.uploadAll()" 
+                [disabled]="!uploader.getNotUploadedItems().length" >
+                    Upload an Image
+              </button>
+            </div>
+            <hr>
+  
+              <br>
+              <h5>Loan Detail</h5>
+              <div class="clearfix"></div>
+              <p><b>Bank name:</b>  {{loan.bankName}}</p>
+              <p><b>Loan number:</b>  {{loan.loanNumber}}</p>
+              <p><b>Amount:</b>  {{ currencySymbol }} {{loan.amount | currency:[]}}</p>
+              <p><b>Balance:</b>  {{ currencySymbol }} {{loan.balance | currency:[]}}</p>
+              <p><b>Partial Payments:</b>  {{ currencySymbol }} {{loan.partialPayments | currency:[]}}</p>
+              <p><b>Opening date:</b>  {{loan.openingDate | date}}</p>
+              <p><b>Due date:</b>  {{loan.dueDate | date}}</p>
+              <p><b>project details:</b></p>
+              <p>
+                {{loan.project || 'Not available'}}
+              </p>
+          </div>
+          <!-- loan note (timeline) -->
+          <div class="col-md-3 notes-container">
+              <div class="notes">
+                  <br>
+                  <h5>Loan Timeline</h5>
+                  <hr>
+                  <div class="note" *ngFor="let note of notes">
+                    <br>
+                    <p class="noteTitle">{{note.title}}</p>
+                    <p class="noteContent">{{note.note | slice:0:47}}...</p>
+                    <p class="noteDetails">
+                      <span>{{note.createdAt | date}}</span>
+                    </p>
+                  </div>
+              </div>
+            </div>
+          <!-- end of loan note(timeline) -->
+          <div class="col-md-1"></div>
+      </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Add note popup -->
+  <ng-template #content let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title" id="create-note-modal">Add loan note</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="noteTitle">Title:</label>
+            <input type="text" [(ngModel)]="note.title" class="form-control" id="noteTitle" name="noteTitle" aria-describedby="noteTitle" placeholder="Note title">
+            
+            <label for="noteContent">Note:</label>
+            <textarea class="form-control" 
+            id="noteContent" name="noteContent" aria-describedby="noteContent"
+            rows="3" [(ngModel)]="note.note" placeholder="Note content"></textarea>
+          </div>
+  
+          <button type="submit" class="btn btn-primary" (click)="addLoanNote(loan.id, note)">Add note</button>
+        </form>
+  
+      </div>
+    </ng-template>
+    <pre>{{closeResult}}</pre>
+  
+    <!-- Edit loan modal -->
+    <ng-template #Editcontent let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title" id="edit-loan-modal">Edit loan</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+              <div class="form-group">
+                  <label for="bankName">Bank name:</label>
+                  <input type="text" [(ngModel)]="loan.bankName" class="form-control" id="bankName" name="bankName" aria-describedby="bankName" placeholder="Bank name">
+                  
+                  <label for="loanNumber">Loan number:</label>
+                  <input type="text" [(ngModel)]="loan.loanNumber" class="form-control" id="loanNumber" name="loanNumber" aria-describedby="loanNumber" placeholder="Loan number">
+        
+                  <label for="loanAmount">Loan amount:</label>
+                  <input type="text" [(ngModel)]="loan.amount" name="amount" class="form-control" id="loanAmount" aria-describedby="loanAmount" placeholder="Loan amount">
+                  
+                  <label for="partialPayments">Partial Payment:</label>
+                  <input type="text" [(ngModel)]="loan.partialPayments" name="partialPayments" class="form-control" id="partialPayment" aria-describedby="partialPayment" placeholder="Partial payment">
+                  
+                  <label for="balance">Balance:</label>
+                  <input type="text" [(ngModel)]="loan.balance" name="balance" class="form-control" id="balance" aria-describedby="balance" placeholder="Balance" readonly>
+                  
+                  <label for="openingDate">Opening date:</label>
+                  <input type="date" [(ngModel)]="loan.openingDate" name="openingDate" class="form-control" id="openingDate" aria-describedby="openingDate" placeholder="Opening Date">
+                  
+                  <label for="dueDate">Due date:</label>
+                  <input type="date" [(ngModel)]="loan.dueDate" name="dueDate" class="form-control" id="dueDate" aria-describedby="dueDate" placeholder="Due date">
+                  
+                  <label for="loanDetails">Loan details:</label>
+                  <input type="text" [(ngModel)]="loan.details" name="details" class="form-control" id="loanDetails" aria-describedby="loanDetails" placeholder="Loan details">
+                </div>
+    
+            <button type="submit" class="btn btn-primary" (click)="editLoan(loan)">Update</button>
+          </form>
+    
+        </div>
+      </ng-template>
+      <pre>{{closeResult}}</pre>
